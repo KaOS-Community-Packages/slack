@@ -5,7 +5,7 @@ URL: <a href="https://slack.com/">slack.com</a>
  
 
 Needed from KCP:
-[gvfs](../../../gcfs)
+[gvfs](../../../gvfs)
 
 Install first gvfs:
 ```
