@@ -3,14 +3,7 @@ Slack App (Beta) for KaOS
 <br>
 URL: <a href="https://slack.com/">slack.com</a>
  
-
-Needed from KCP:
-[gvfs](../../../gvfs)
-
-Install first gvfs:
-```
-kcp -i gvfs --asdeps 
-```
+Install:
 ```
 kcp -i slack
 ```
