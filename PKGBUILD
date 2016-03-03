@@ -2,7 +2,7 @@
 pkgname=slack
 pkgver=2.0.0
 pkgrel=1
-pkgdesc="Slack App (Beta) for KaOS"
+pkgdesc="Slack Desktop (Beta) for Linux"
 arch=('x86_64')
 url="https://slack.com/apps"
 license=('custom')
