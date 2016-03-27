@@ -1,5 +1,5 @@
 # slack
-Slack Desktop (Beta) for Linux
+Slack Desktop  for Linux
 <br>
 URL: <a href="https://slack.com/">slack.com</a>
 
