@@ -1,17 +1,22 @@
 pkgname=slack
-pkgver=2.0.6
+pkgver=2.5.2
 pkgrel=1
 pkgdesc="Slack Desktop for Linux"
 arch=('x86_64')
 url="https://slack.com/apps"
 license=('custom')
-depends=( 'gconf' 'gtk2' 'hunspell' 'hunspell-en' 'libgcrypt' 'nss' 'libxtst' 'libnotify' 'xdg-utils' 'libxss' 'alsa-lib')
-optdepends=('libgnome-keyring')
-source=("https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-${pkgver}-amd64.deb")
-sha256sums=('8c91ef57f4c4b2fec9e5d3d3ad6f54b7b15da269c041a0e1a37c76b133097528')
+depends=('gconf' 'gtk2' 'expat' 'hunspell' 'libgcrypt' 'nss' 'libxtst' 'libnotify' 'xdg-utils' 'libxss' 'alsa-lib' 'libgnome-keyring')
+source=("https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-${pkgver}-amd64.deb"
+        "${pkgname}.desktop")
+md5sums=('90ba06528bee13fac98ad2e34aa64905'
+         '479d61dd5f731b3c5d67dba2e5aec2d6')
 
 package() {
-    bsdtar -xf data.tar.xz -C "${pkgdir}"
-    find "${pkgdir}" -type d -exec chmod 755 {} +
-    rm -rf "${pkgdir}/etc"
+    bsdtar -xf data.tar.xz
+    
+    mkdir -p ${pkgdir}/opt/${pkgname} ${pkgdir}/usr/bin
+    cp -R usr/lib/${pkgname}/* ${pkgdir}/opt/${pkgname}
+    install -Dm644 ${pkgname}.desktop ${pkgdir}/usr/share/applications/${pkgname}.desktop
+    install -Dm644 usr/share/pixmaps/${pkgname}.png ${pkgdir}/usr/share/icons/hicolor/512x512/apps/${pkgname}.png
+    ln -s /opt/${pkgname}/${pkgname} ${pkgdir}/usr/bin/${pkgname}
 }

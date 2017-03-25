@@ -1,7 +1,7 @@
 # slack
-Slack Desktop  for Linux
-<br>
-URL: <a href="https://slack.com/">slack.com</a>
+Slack Desktop for Linux
+
+[Homepage](https://slack.com)
 
 Install:
 ```
