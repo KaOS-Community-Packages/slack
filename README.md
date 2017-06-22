@@ -3,7 +3,7 @@ Slack Desktop for Linux
 
 [Homepage](https://slack.com)
 
-Install:
+### Install:
 ```
 kcp -i slack
 ```
