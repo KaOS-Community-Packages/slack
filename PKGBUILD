@@ -1,5 +1,5 @@
 pkgname=slack
-pkgver=3.3.8
+pkgver=4.0.1
 pkgrel=1
 pkgdesc="Slack Desktop for Linux"
 arch=('x86_64')
@@ -8,7 +8,7 @@ license=('custom')
 depends=('gconf' 'gtk3' 'expat' 'hunspell' 'libgcrypt' 'nss' 'libxtst' 'libnotify' 'xdg-utils' 'libxss' 'alsa-lib' 'libgnome-keyring')
 source=("https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-${pkgver}-amd64.deb"
         "${pkgname}.desktop")
-md5sums=('52e2441fb74a62e4053c47740aeab91c'
+md5sums=('d3738ea4d5761a398a01656b875587cc'
          '479d61dd5f731b3c5d67dba2e5aec2d6')
 
 package() {
