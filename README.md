@@ -6,4 +6,6 @@ Slack Desktop for Linux
 ### Install:
 ```
 kcp -i slack
+
+If you can't sign in with Chrome etc., try Firefox
 ```
