@@ -1,25 +1,32 @@
-pkgname=slack
-pkgver=4.9.1
+
+pkgname=slack-desktop
+pkgver=4.27.156
 pkgrel=1
-pkgdesc="Slack Desktop for Linux"
+pkgdesc="Slack Desktop (Beta) for Linux"
 arch=('x86_64')
-url="https://slack.com/apps"
+url="https://slack.com/downloads"
 license=('custom')
-depends=('gconf' 'gtk3' 'expat' 'hunspell' 'libgcrypt' 'nss' 'libxtst' 'libnotify' 'xdg-utils' 'libxss' 'alsa-lib')
-optdepends=('libgnome-keyring')
-source=("https://downloads.slack-edge.com/linux_releases/slack-desktop-${pkgver}-amd64.deb"
-        "${pkgname}.desktop")
-md5sums=('f40feb45afd21fdaeb09475cf060bd82'
-         '479d61dd5f731b3c5d67dba2e5aec2d6')
+depends=('gtk3' 'libsecret' 'libxss' 'nss' 'xdg-utils')
+source=("https://downloads.slack-edge.com/releases/linux/${pkgver}/prod/x64/${pkgname}-${pkgver}-amd64.deb")
+noextract=("${pkgname}-${pkgver}-amd64.deb")
+
+
+b2sums=('b7d457fcb6a2518eaea7efc4d7b43f01f8c1da8a1218d3c2c2c14e195004102be344c6f4e2b60dd4f4677e53ea976cb7b0b102e3e0eec385df881eecdee4a7cd')
 
 package() {
-    bsdtar -xf data.tar.xz
+    bsdtar -O -xf "slack-desktop-${pkgver}"*.deb data.tar.xz | bsdtar -C "${pkgdir}" -xJf -
 
-    mkdir -p ${pkgdir}/opt/${pkgname} ${pkgdir}/usr/bin
-    cp -R usr/lib/${pkgname}/* ${pkgdir}/opt/${pkgname}
-    chmod 4755 ${pkgdir}/opt/${pkgname}/chrome-sandbox
-    install -Dm644 ${pkgname}.desktop ${pkgdir}/usr/share/applications/${pkgname}.desktop
-    install -Dm644 usr/share/pixmaps/${pkgname}.png ${pkgdir}/usr/share/icons/hicolor/512x512/apps/${pkgname}.png
-    ln -s /opt/${pkgname}/${pkgname} ${pkgdir}/usr/bin/${pkgname}
+    # Permission fix
+    find "${pkgdir}" -type d -exec chmod 755 {} +
+
+    # Remove all unnecessary stuff
+    rm -rf "${pkgdir}/etc"
+    rm -rf "${pkgdir}/usr/lib/slack/src"
+    rm -rf "${pkgdir}/usr/share/lintian"
+    rm -rf "${pkgdir}/usr/share/doc"
+
+    # Move license
+    install -dm755 "${pkgdir}/usr/share/licenses/${pkgname}"
+    mv "${pkgdir}/usr/lib/slack/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}"
+    ln -s "/usr/share/licenses/${pkgname}/LICENSE" "${pkgdir}/usr/lib/slack/LICENSE"
 }
-
