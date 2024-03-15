@@ -1,6 +1,6 @@
 
 pkgname=slack-desktop
-pkgver=4.27.156
+pkgver=4.36.140
 pkgrel=1
 pkgdesc="Slack Desktop (Beta) for Linux"
 arch=('x86_64')
@@ -11,7 +11,7 @@ source=("https://downloads.slack-edge.com/releases/linux/${pkgver}/prod/x64/${pk
 noextract=("${pkgname}-${pkgver}-amd64.deb")
 
 
-b2sums=('b7d457fcb6a2518eaea7efc4d7b43f01f8c1da8a1218d3c2c2c14e195004102be344c6f4e2b60dd4f4677e53ea976cb7b0b102e3e0eec385df881eecdee4a7cd')
+b2sums=('2af0c4069d56c8dea6938034cf913414e3b865965bed0d3fce55bab5788c2bc1de8cf8824cd25979adfcd401b0132b45a6212507d7c6c04bbc6b0576de53f790')
 
 package() {
     bsdtar -O -xf "slack-desktop-${pkgver}"*.deb data.tar.xz | bsdtar -C "${pkgdir}" -xJf -
